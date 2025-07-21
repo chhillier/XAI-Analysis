@@ -1,9 +1,0 @@
-{
-    "n_layers": 3,
-    "hidden_size": 13,
-    "dropout_rate": 0.24057736749348752,
-    "activation": "LeakyReLU",
-    "optimizer": "Adam",
-    "lr": 0.009254278407561496,
-    "batch_size": 16
-}
