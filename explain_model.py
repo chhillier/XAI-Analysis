@@ -45,8 +45,8 @@ def evaluate_model(model, test_loader, device, class_names=None):
 
 if __name__ == "__main__":
     # --- Configuration ---
-    PARAMS_FILENAME = "outputs/best_hyperparameters_cv_latest.json"
-    MODEL_FILENAME = "models/best_model_cv_latest.pth"
+    PARAMS_FILENAME = "outputs/nas_best_hyperparameters_3obj_1D_2Feature_Signal_latest_XAI_pass1.json"
+    MODEL_FILENAME = "models/nas_best_hyperparameters_3obj_1D_2Feature_Signal_latest_XAI_pass1.pth"
     
     os.makedirs('outputs', exist_ok=True)
     os.makedirs('models', exist_ok=True)

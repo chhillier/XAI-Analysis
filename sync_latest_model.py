@@ -8,12 +8,14 @@ print("--- Starting Model Sync ---")
 source_repo_path = os.path.join('..', 'NeuralNets')
 
 # Define the source filenames
-source_params_file = os.path.join(source_repo_path, 'outputs', 'best_hyperparameters_cv_latest.json')
-source_model_file = os.path.join(source_repo_path, 'models', 'best_model_cv_latest.pth')
+source_params_file = os.path.join(source_repo_path, 'outputs', 'nas_best_hyperparameters_3obj_1D_2Feature_Signal_latest.json')
+
+source_model_file = os.path.join(source_repo_path, 'models', 'nas_best_model_3obj_1D_2Feature_Signal_latest.pth')
+
 
 # Define the destination filenames
-dest_params_file = 'outputs/best_hyperparameters_cv_latest.json'
-dest_model_file = 'models/best_model_cv_latest.pth'
+dest_params_file = 'outputs/nas_best_hyperparameters_3obj_1D_2Feature_Signal_latest_XAI_pass1.json'
+dest_model_file = 'models/nas_best_model_3obj_1D_2Feature_Signal_latest_XAI_pass1.pth'
 
 # --- Copy Parameter File ---
 if os.path.exists(source_params_file):
