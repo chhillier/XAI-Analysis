@@ -1,0 +1,23 @@
+{
+    "objectives": {
+        "mean_cv_accuracy": 0.76,
+        "std_dev": 0.04898979485566356,
+        "mean_gap": 0.024999999999999977
+    },
+    "hyperparameters": {
+        "activation_name": "ReLU",
+        "n_conv_blocks": 3,
+        "base_channels": 49,
+        "block_conv_layers": 2,
+        "kernel_size": 3,
+        "n_fc_layers": 2,
+        "dropout_rate": 0.3716056180291424,
+        "fc_size": 252,
+        "optimizer_name": "AdamW",
+        "lr": 0.0024387309439370293,
+        "weight_decay": 3.458969856972524e-05,
+        "scheduler_name": "CosineAnnealingLR",
+        "scheduler_t_max": 31,
+        "batch_size": 64
+    }
+}

@@ -9,6 +9,8 @@
 *(Explain the dataset and the specific challenge you created, like the "confuser" class.)*
 
 - **The Main Problem:**
+- **Brain Rot is the only class being reasonably identified the rest of the classes are guessed and Metabolic Encephalopathy has a 0% prediction recall precision**
+
 - **My Hypothesis:**
 
 ---
@@ -35,7 +37,11 @@ Here's the step-by-step process to get from nothing to an answer.
 ---
 
 ## What I've Found So Far
-*(Document your findings as you analyze the model's performance and the XAI plots.)*
+- **Brain Rot is the only class being reasonably identified the rest of the classes are guessed and Metabolic Encephalopathy has a 0% prediction recall precision**
+
+- **Need to build other comparisions to see if there are similarities to Metabolic Encephalopathy**
+
+- **Need to look at Brain Rot since it was the only class that was reasonably predicted well**
 
 - **The Results:**
 - **The XAI Plot:**

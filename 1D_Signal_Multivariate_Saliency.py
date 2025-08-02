@@ -8,15 +8,12 @@ from captum.attr import Saliency
 # Make sure your cnn1D.py is in the mymodelzoo subfolder
 from mymodelzoo.cnn1D import DynamicCNN
 
-# --- 1. Configuration (Uses files from your sync script and new test_data folder) ---
-PARAMS_PATH = "outputs/nas_best_hyperparameters_3obj_1D_2Feature_Signal_latest_XAI_pass1.json"
-MODEL_PATH = "models/nas_best_model_3obj_1D_2Feature_Signal_latest_XAI_pass1.pth"
-# --- LOOK HERE: Updated paths to point to the test_data folder ---
+# --- 1. Configuration ---
+PARAMS_PATH = "outputs/nas_best_hyperparameters_3obj_1D_2Feature_Signal_latest_XAI_pass2.json"
+MODEL_PATH = "models/nas_best_model_3obj_1D_2Feature_Signal_latest_XAI_pass2.pth" 
 X_TEST_PATH = "../NeuralNets/test data/X_test.npy" 
 Y_TEST_PATH = "../NeuralNets/test data/y_test.npy"
-# ----------------------------------------------------------------
 
-# This must match the order from your converter script
 CLASS_NAMES = ['Brain Rot', 'Brain Tumor', 'Metabolic Encephalopathy', 'Normal', 'Sleep Disorder']
 DEVICE = torch.device("mps" if torch.backends.mps.is_available() else "cuda" if torch.cuda.is_available() else "cpu")
 
@@ -53,16 +50,23 @@ def load_model_and_data():
     print("Model and data loaded successfully.")
     return model, X_test, y_test
 
-def find_misclassified_sample(model, X_test, y_test, target_class_name):
+def find_correctly_classified_sample(model, X_test_tensor, y_test_tensor, predictions, target_class_name):
+    """Finds the first instance of a correctly classified sample for a given class."""
+    print(f"\nSearching for a correctly classified '{target_class_name}' sample...")
+    target_class_index = CLASS_NAMES.index(target_class_name)
+    for i in range(len(y_test_tensor)):
+        if y_test_tensor[i].item() == target_class_index and predictions[i].item() == target_class_index:
+            print(f"Found a sample at index {i}.")
+            print(f"  - True Label: '{CLASS_NAMES[y_test_tensor[i].item()]}'")
+            print(f"  - Predicted Label: '{CLASS_NAMES[predictions[i].item()]}'")
+            return X_test_tensor[i].unsqueeze(0), y_test_tensor[i].item(), predictions[i].item()
+    
+    print(f"Could not find a correctly classified '{target_class_name}' sample.")
+    return None, None, None
+
+def find_misclassified_sample(model, X_test_tensor, y_test_tensor, predictions, target_class_name):
     """Finds the first instance of a misclassified sample for a given class."""
     print(f"\nSearching for a misclassified '{target_class_name}' sample...")
-    X_test_tensor = torch.tensor(X_test, dtype=torch.float32).to(DEVICE)
-    y_test_tensor = torch.tensor(y_test, dtype=torch.long)
-
-    with torch.no_grad():
-        outputs = model(X_test_tensor)
-        predictions = torch.argmax(outputs, dim=1)
-
     target_class_index = CLASS_NAMES.index(target_class_name)
     for i in range(len(y_test_tensor)):
         if y_test_tensor[i].item() == target_class_index and predictions[i].item() != target_class_index:
@@ -80,10 +84,9 @@ def explain_prediction(model, input_sample, pred_label_idx):
     attributions = saliency.attribute(input_sample, target=pred_label_idx)
     return attributions.squeeze(0).cpu().detach().numpy()
 
-def visualize_attributions(signal, attributions, true_label_name, pred_label_name):
+def visualize_attributions(signal, attributions, true_label_name, pred_label_name, output_filename):
     """Plots the signal and the corresponding attribution map."""
     print("\nGenerating attribution plot...")
-    # Average attributions across features for a cleaner plot
     attr_scores = np.mean(np.abs(attributions), axis=1)
     timesteps = np.arange(signal.shape[0])
 
@@ -102,26 +105,56 @@ def visualize_attributions(signal, attributions, true_label_name, pred_label_nam
     ax2.fill_between(timesteps, 0, attr_scores, color=color, alpha=0.4, label='Model Attention (Saliency)')
     ax2.tick_params(axis='y', labelcolor=color)
 
-    fig.suptitle(f"XAI Analysis: Why was '{true_label_name}' misclassified as '{pred_label_name}'?", fontsize=16)
+    title = f"XAI Analysis: Why was '{true_label_name}' correctly classified as '{pred_label_name}'?"
+    if true_label_name != pred_label_name:
+        title = f"XAI Analysis: Why was '{true_label_name}' misclassified as '{pred_label_name}'?"
+
+    fig.suptitle(title, fontsize=16)
     fig.tight_layout(rect=[0, 0.03, 1, 0.95])
-    plt.savefig("xai_saliency_plot.png")
-    print("Plot saved to xai_saliency_plot.png")
+    plt.savefig(output_filename)
+    print(f"Plot saved to {output_filename}")
     plt.show()
 
 if __name__ == "__main__":
     model, X_test, y_test = load_model_and_data()
     
-    # Let's find out why the model is confused about our "confuser" class
+    # Pre-calculate all predictions once to avoid re-computing
+    X_test_tensor = torch.tensor(X_test, dtype=torch.float32).to(DEVICE)
+    y_test_tensor = torch.tensor(y_test, dtype=torch.long)
+    with torch.no_grad():
+        outputs = model(X_test_tensor)
+        predictions = torch.argmax(outputs, dim=1)
+
+    # --- Loop to analyze a CORRECTLY classified sample for EACH class ---
+    for target_class in CLASS_NAMES:
+        input_sample, true_label_idx, pred_label_idx = find_correctly_classified_sample(
+            model, X_test_tensor, y_test_tensor, predictions, target_class
+        )
+        
+        if input_sample is not None:
+            attributions = explain_prediction(model, input_sample, pred_label_idx)
+            output_filename = f"Saliency/2nd Run EEG/xai_saliency_plot_CORRECT_{target_class.replace(' ', '_')}.png"
+            visualize_attributions(
+                signal=input_sample.squeeze(0).cpu().numpy(),
+                attributions=attributions,
+                true_label_name=CLASS_NAMES[true_label_idx],
+                pred_label_name=CLASS_NAMES[pred_label_idx],
+                output_filename=output_filename
+            )
+
+    # --- Specific analysis for our MISCLASSIFIED "confuser" class ---
+    target_class = 'Metabolic Encephalopathy'
     input_sample, true_label_idx, pred_label_idx = find_misclassified_sample(
-        model, X_test, y_test, 'Metabolic Encephalopathy'
+        model, X_test_tensor, y_test_tensor, predictions, target_class
     )
     
     if input_sample is not None:
         attributions = explain_prediction(model, input_sample, pred_label_idx)
-        
+        output_filename = f"2nd Run EEG/xai_saliency_plot_MISCLASSIFIED_{target_class.replace(' ', '_')}.png"
         visualize_attributions(
             signal=input_sample.squeeze(0).cpu().numpy(),
             attributions=attributions,
             true_label_name=CLASS_NAMES[true_label_idx],
-            pred_label_name=CLASS_NAMES[pred_label_idx]
+            pred_label_name=CLASS_NAMES[pred_label_idx],
+            output_filename=output_filename
         )
