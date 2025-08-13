@@ -125,6 +125,30 @@ if __name__ == "__main__":
         outputs = model(X_test_tensor)
         predictions = torch.argmax(outputs, dim=1)
 
+    output_dir = "3rd Run EEG/Saliency"
+    os.makedirs(output_dir, exist_ok=True)
+        # --- DIAGNOSTIC BLOCK ---
+    print("\n--- Running Diagnostic for 'Sleep Disorder' ---")
+    sleep_disorder_idx = CLASS_NAMES.index('Sleep Disorder')
+    actual_sd_indices = np.where(y_test == sleep_disorder_idx)[0]
+    
+    if len(actual_sd_indices) > 0:
+        correct_count = 0
+        print(f"Found {len(actual_sd_indices)} 'Sleep Disorder' samples in the test set.")
+        for idx in actual_sd_indices:
+            true_label = CLASS_NAMES[y_test[idx]]
+            pred_label = CLASS_NAMES[predictions[idx].item()]
+            is_correct = "CORRECT" if true_label == pred_label else "INCORRECT"
+            if is_correct == "CORRECT":
+                correct_count += 1
+            print(f"  - Sample {idx}: True Label = {true_label}, Predicted Label = {pred_label}  ({is_correct})")
+        
+        print(f"\n  --> Accuracy for this class: {correct_count / len(actual_sd_indices):.2%}")
+    else:
+        print("No 'Sleep Disorder' samples found in the test set.")
+    print("--- End of Diagnostic ---")
+    # --------------------------------------------------
+
     # --- Loop to analyze a CORRECTLY classified sample for EACH class ---
     for target_class in CLASS_NAMES:
         input_sample, true_label_idx, pred_label_idx = find_correctly_classified_sample(
@@ -133,7 +157,7 @@ if __name__ == "__main__":
         
         if input_sample is not None:
             attributions = explain_prediction(model, input_sample, pred_label_idx)
-            output_filename = f"Saliency/2nd Run EEG/xai_saliency_plot_CORRECT_{target_class.replace(' ', '_')}.png"
+            output_filename = f"{output_dir}/xai_saliency_plot_CORRECT_{target_class.replace(' ', '_')}.png"
             visualize_attributions(
                 signal=input_sample.squeeze(0).cpu().numpy(),
                 attributions=attributions,
