@@ -1,0 +1,113 @@
+Analysis Log for: Correctly Classified: Sony
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 1 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0351
+Sum of All Feature Attributions:        -0.0348
+-------------------------------------------
+Unexplained Remainder (Delta):            -0.0003
+=> Explanation Completeness:               99.11%
+===========================================
+Total Signal Attribution Score: 0.0499
+Absolute Score (Ancillary 1): 0.0100
+Absolute Score (Ancillary 2): 0.0422
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 2 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0352
+Sum of All Feature Attributions:        -0.0351
+-------------------------------------------
+Unexplained Remainder (Delta):            -0.0001
+=> Explanation Completeness:               99.81%
+===========================================
+Total Signal Attribution Score: 0.0504
+Absolute Score (Ancillary 1): 0.0082
+Absolute Score (Ancillary 2): 0.0413
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 3 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0349
+Sum of All Feature Attributions:        -0.0352
+-------------------------------------------
+Unexplained Remainder (Delta):            0.0003
+=> Explanation Completeness:               99.19%
+===========================================
+Total Signal Attribution Score: 0.0507
+Absolute Score (Ancillary 1): 0.0088
+Absolute Score (Ancillary 2): 0.0407
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 4 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0357
+Sum of All Feature Attributions:        -0.0356
+-------------------------------------------
+Unexplained Remainder (Delta):            -0.0001
+=> Explanation Completeness:               99.73%
+===========================================
+Total Signal Attribution Score: 0.0491
+Absolute Score (Ancillary 1): 0.0119
+Absolute Score (Ancillary 2): 0.0454
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 5 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0355
+Sum of All Feature Attributions:        -0.0352
+-------------------------------------------
+Unexplained Remainder (Delta):            -0.0003
+=> Explanation Completeness:               99.16%
+===========================================
+Total Signal Attribution Score: 0.0504
+Absolute Score (Ancillary 1): 0.0089
+Absolute Score (Ancillary 2): 0.0420
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 6 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0351
+Sum of All Feature Attributions:        -0.0350
+-------------------------------------------
+Unexplained Remainder (Delta):            -0.0002
+=> Explanation Completeness:               99.51%
+===========================================
+Total Signal Attribution Score: 0.0511
+Absolute Score (Ancillary 1): 0.0069
+Absolute Score (Ancillary 2): 0.0393
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 7 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0355
+Sum of All Feature Attributions:        -0.0353
+-------------------------------------------
+Unexplained Remainder (Delta):            -0.0002
+=> Explanation Completeness:               99.42%
+===========================================
+Total Signal Attribution Score: 0.0507
+Absolute Score (Ancillary 1): 0.0093
+Absolute Score (Ancillary 2): 0.0429
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 8 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0356
+Sum of All Feature Attributions:        -0.0360
+-------------------------------------------
+Unexplained Remainder (Delta):            0.0003
+=> Explanation Completeness:               99.03%
+===========================================
+Total Signal Attribution Score: 0.0506
+Absolute Score (Ancillary 1): 0.0073
+Absolute Score (Ancillary 2): 0.0402
+
+--- Quantitative Analysis for: Correctly Classified: Sony, Sample 9 ---
+--- Completeness Axiom Check ---
+Total Model Output Change to Explain:   -0.0350
+Sum of All Feature Attributions:        -0.0348
+-------------------------------------------
+Unexplained Remainder (Delta):            -0.0002
+=> Explanation Completeness:               99.42%
+===========================================
+Total Signal Attribution Score: 0.0498
+Absolute Score (Ancillary 1): 0.0084
+Absolute Score (Ancillary 2): 0.0406
+
+
+--- SUMMARY (from 9 random samples) ---
+Average Completeness Delta: -0.000081

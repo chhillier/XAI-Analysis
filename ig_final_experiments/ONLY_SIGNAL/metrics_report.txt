@@ -1,0 +1,25 @@
+--- Performance Metrics for Experiment: ONLY_SIGNAL ---
+
+Overall Accuracy: 0.0667
+
+              precision    recall  f1-score   support
+
+      iPhone       0.00      0.00      0.00       200
+     Samsung       0.00      0.00      0.00       200
+       Pixel       0.00      0.00      0.00       200
+    Motorola       0.00      0.00      0.00       200
+       Nokia       0.00      0.00      0.00       200
+        Sony       0.07      1.00      0.12       200
+          LG       0.00      0.00      0.00       200
+      Huawei       0.00      0.00      0.00       200
+     OnePlus       0.00      0.00      0.00       200
+      Xiaomi       0.00      0.00      0.00       200
+        Oppo       0.00      0.00      0.00       200
+        Vivo       0.00      0.00      0.00       200
+      Realme       0.00      0.00      0.00       200
+        Asus       0.00      0.00      0.00       200
+         ZTE       0.00      0.00      0.00       200
+
+    accuracy                           0.07      3000
+   macro avg       0.00      0.07      0.01      3000
+weighted avg       0.00      0.07      0.01      3000

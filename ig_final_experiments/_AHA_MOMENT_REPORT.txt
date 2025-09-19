@@ -1,0 +1,50 @@
+--- Average 'AHA!' Moment Report ---
+Calculates the average point along the baseline-to-input path where the model's prediction flips to the correct class.
+A lower percentage indicates a more robustly learned class.
+================================================================================
+
+Class: iPhone
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Samsung
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Pixel
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Motorola
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Nokia
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Sony
+  -> Avg. AHA! Moment: 0.0%
+
+Class: LG
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Huawei
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: OnePlus
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Xiaomi
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Oppo
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Vivo
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Realme
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: Asus
+  -> Model never flipped to correct prediction for tested samples.
+
+Class: ZTE
+  -> Model never flipped to correct prediction for tested samples.
+

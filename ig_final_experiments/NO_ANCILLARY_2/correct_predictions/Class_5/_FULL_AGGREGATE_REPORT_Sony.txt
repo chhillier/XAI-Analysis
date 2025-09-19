@@ -1,0 +1,9 @@
+--- Full Aggregate Analysis Report for Class: Sony ---
+Aggregated over 200 samples.
+============================================================
+--- Average Completeness Axiom Check ---
+Avg. Total Model Output Change:   -0.0354
+Avg. Sum of Attributions:         -0.0354
+Avg. Unexplained Remainder (Delta): -0.0000
+=> Explanation Completeness:       99.98%
+Average 'AHA!' Moment:            0.0%

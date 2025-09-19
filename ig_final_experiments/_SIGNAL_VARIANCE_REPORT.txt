@@ -1,0 +1,50 @@
+--- Signal Intra-Class Variance Report ---
+Calculates the average standard deviation of signal shapes within each class.
+A higher score means the signals for that class are less consistent.
+============================================================
+
+Class: iPhone
+  -> Average Signal Shape StDev: 0.049923
+
+Class: Samsung
+  -> Average Signal Shape StDev: 0.050021
+
+Class: Pixel
+  -> Average Signal Shape StDev: 0.049882
+
+Class: Motorola
+  -> Average Signal Shape StDev: 0.049931
+
+Class: Nokia
+  -> Average Signal Shape StDev: 0.049942
+
+Class: Sony
+  -> Average Signal Shape StDev: 0.049899
+
+Class: LG
+  -> Average Signal Shape StDev: 0.050094
+
+Class: Huawei
+  -> Average Signal Shape StDev: 0.049966
+
+Class: OnePlus
+  -> Average Signal Shape StDev: 0.049942
+
+Class: Xiaomi
+  -> Average Signal Shape StDev: 0.050082
+
+Class: Oppo
+  -> Average Signal Shape StDev: 0.050017
+
+Class: Vivo
+  -> Average Signal Shape StDev: 0.049944
+
+Class: Realme
+  -> Average Signal Shape StDev: 0.050087
+
+Class: Asus
+  -> Average Signal Shape StDev: 0.049745
+
+Class: ZTE
+  -> Average Signal Shape StDev: 0.049842
+
